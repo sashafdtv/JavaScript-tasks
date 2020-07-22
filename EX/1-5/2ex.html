@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EX2</title>
+    <style>
+        .ex23:focus {
+            background-color: white;
+            border: 3px solid green;
+            box-shadow: -4px 0px 73px 0px rgba(3, 255, 129, 1);
+            transition: all 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="text-align:center">
+        <h1>Задание 2</h1>
+        <div class="div" style="margin-bottom: 50px">
+            <button class="ex21" style="margin-top: 30px;">
+                <p>2.1 Вычисление значения функции, заданной графически</p>
+                <img src="https://i.ibb.co/c2vxKtF/2ex.jpg" alt="2ex" border="0">
+            </button>
+        </div>
+        <div class="div" style="margin-bottom: 50px; display: flex; justify-content: center;">
+            <button class="ex22">
+                <p>2.2.1 Выстрел по мишени</p>
+                <img src="https://i.ibb.co/Tk2qrCG/2-2ex.jpg" alt="2-2ex" border="0" width="350px" height="180px">
+            </button>
+            <button class="ex222">
+                <p>2.2.2 Выстрел по мишени</p>
+                <img src="https://i.ibb.co/QpPQSZQ/3ex.jpg" alt="3ex" border="0" width="350px" height="180px">
+            </button>
+        </div>
+        <div class="div">
+            <button class="ex23" style="margin-bottom: 50px">
+                <p>2.3 Клавиши курсора</p>
+            </button>
+        </div>
+        <div class="div">
+            <button class="ex24" style="margin-bottom: 50px">
+                <p>2.4 Таблица значений функции</p>
+            </button>
+        </div>
+
+        <div class="div">
+            <button class="ex25" style="margin-bottom: 50px">
+                <p>2.5 Вычисление суммы ряда</p>
+            </button>
+        </div>
+
+        <div class="div">
+            <button class="ex26" style="margin-bottom: 50px">
+                <p>Задание: Вариант 14</p>
+                <img src="https://i.ibb.co/RBWQCbS/2ex6.jpg" alt="2ex6" border="0">
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".ex21").addEventListener("click", function () {
+            var y;
+            var x = +prompt("Введите значение аргумента");
+            //условия
+            (x < -2) ? y = 0:
+                (x >= -2 && x < -1) ? y = -x - 2 :
+                (x >= -1 && x < 1) ? y = x :
+                (x >= 1 && x < 2) ? y = -x + 2 :
+                (x >= 2) ? y = 0 :
+                y = 0;
+            alert("Для x = " + x + " значение функции y = " + y);
+        });
+
+
+        document.querySelector(".ex22").addEventListener("click", function () {
+            var x = +prompt("Введите значение x");
+            var y = +prompt("Введите значение y");
+            if (x * x + y * y <= 1 || x <= 0 && y <= 0 && y >= -x - 2) {
+                alert("Точка попадает в цель");
+            } else {
+                alert("Точка не попадает в цель")
+            }
+        });
+
+        document.querySelector(".ex222").addEventListener("click", function () {
+            var x = +prompt("Введите значение x");
+            var y = +prompt("Введите значение y");
+            if (y < 0 && ((x - 1) * (x - 1) + y * y <= 1 ||
+                    (x + 1) * (x + 1) + y * y <= 1)) {
+                alert("Точка попадает в цель");
+            } else {
+                alert("Точка не попадает в цель")
+            }
+        });
+
+        document.querySelector(".ex23").addEventListener("keydown", function (event) {
+            var directions = {
+                37: "Стрелка влево",
+                38: "Стрелка вверх",
+                39: "Стрелка вправо",
+                40: "Стрелка вниз"
+            };
+
+            var keyC = directions[event.keyCode];
+            if (keyC !== undefined) alert("Была нажата: " + keyC + ". Нажмите enter для продолжения.");
+        });
+        document.querySelector(".ex23").addEventListener("click", function () {
+            alert("Закройте это окно и нажмите стрелочную кнопку.");
+
+        });
+
+        document.querySelector(".ex24").addEventListener("click", function () {
+            var Xn = +prompt("Введите значение Xn");
+            var Xk = +prompt("Введите значение Xk");
+            var dX = +prompt("Введите значение Xn");
+            var t = +prompt("Введите значение t");
+            alert("Результат выполнения операции см. в консоли (клавиша F12 -> console)");
+            console.log("----------------------------");
+            console.log("|      X      |      Y      |");
+            console.log("----------------------------");
+            var x = Xn;
+            while (x <= Xk) {
+                if (x < 0) y = t;
+                if (x >= 0 && x < 10) y = t * x;
+                if (x >= 10) y = 2 * t;
+                if (t > 100) {
+                    console.log("|      " + x + "      " + "|      " + y + "      |");
+                } else {
+                    console.log("|      " + x + "      " + "|      " + y + "      |");
+                }
+                x += dX;
+                console.log("----------------------------");
+            }
+        });
+
+        document.querySelector(".ex25").addEventListener("click", function () {
+            const maxIter = 500;
+            var x = +prompt("Введите аргумент");
+            var eps = +prompt("Введите точность");
+            var done = true;
+            var ch = x;
+            var y = ch;
+            for (var i = 0; ch > eps; i++) {
+                ch *= x * x / ((2 * i + 2) * (2 * i + 3));
+                y += ch;
+                
+                if (i > maxIter) {
+                    alert("Ряд расходится!");
+                    return done = false;
+
+                }
+            }
+            if (done) alert("Значение функции: " + y + " для x = " + x);
+            
+        });
+
+        document.querySelector(".ex26").addEventListener("click", function () {
+            const maxIter = 500;
+            var x = +prompt("Введите аргумент");
+            var eps = +prompt("Введите точность");
+            var done = true;
+            var ch = x;
+            var y = ch;
+            console.log("----------------------------");
+            console.log("|      X      |      Y      |");
+            console.log("----------------------------");
+            
+            for (var i = 0; ch > eps; i++) {
+                ch *= 1 * Math.pow(x, i) / Math.pow(2, i) / Math.pow(3, i + 1);
+                
+                if (!(i % 2)) y -= ch; // Если счетчик i делится на 2 без остатка (каждая четная итерация)
+                else y += ch; //в любом другом случае (каждая нечетная итерация)
+
+                console.log("|      " + x + "      " + "|      " + y + "      |")
+
+                if (i > maxIter) {
+                    alert("Ряд расходится!");
+                    return done = false;
+                }
+                
+            }
+            if (done) alert("Значение функции: " + y + " для x = " + x);
+            console.log("|      " + x + "      " + "|      " + y + "      |");
+        })
+    </script>
+
+</body>
+
+</html>

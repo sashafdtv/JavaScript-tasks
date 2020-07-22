@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EX1</title>
+</head>
+
+<body>
+    <div style="text-align:center">
+        <h1>Задание 1</h1>
+        <div class="div" style="margin-bottom: 50px">
+            <button class="ex11" style="margin-top: 30px;">
+                <p>Расчет температуры по Цельсию</p>
+            </button>
+        </div>
+        <div class="div" style="margin-bottom: 50px">
+            <button class="ex12">
+                <p>Временной интервал</p>
+            </button>
+        </div>
+        <div class="div">
+            <button class="ex13">
+                <p>Расчет по формуле, вариант 14</p>
+                <img src="https://i.ibb.co/Y0Lvndw/1ex.jpg" alt="">
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".ex11").addEventListener("click", function () {
+            var fahr = +prompt("Введите температуру по фаренгейту");
+            var cels = (fahr - 32) * 5 / 9;
+            alert("По фаренгейту: " + fahr.toFixed(2) + " / По Цельсию: " + cels.toFixed(2));
+            console.log("По цельсию: " + fahr.toFixed(2));
+            console.log("По фаренгейту: " + cels.toFixed(2));
+        });
+
+
+        document.querySelector(".ex12").addEventListener("click", function () {
+            alert("Введите время начала интервала");
+            var hour1 = +prompt("Введите час старта");
+            var min1 = +prompt("Введите минуту старта");
+            var sec1 = +prompt("Введите секунду старта");
+
+
+            alert("Введите время конца интервала");
+            var hour2 = +prompt("Введите час конца");
+            var min2 = +prompt("Введите минуту конца");
+            var sec2 = +prompt("Введите секунду конца");
+
+            var sum_sec = (hour2 - hour1) * 3600 + (min2 - min1) * 60 + sec2 - sec1;
+            console.log(sum_sec);
+            var hour = Math.floor(sum_sec / 3600);
+            var min = Math.floor((sum_sec - hour * 3600) / 60);
+            var sec = Math.floor(sum_sec - hour * 3600 - min * 60);
+
+            alert("Продолжительность промеутка от " + hour1 + ":" + min1 + ":" + sec1 + " до " + hour2 + ":" +
+                min2 + ":" + sec2 + " равна " + hour + ":" + min + ":" + sec);
+            console.log("Продолжительность промеутка от " + hour1 + ":" + min1 + ":" + sec1 + " до " + hour2 +
+                ":" + min2 + ":" + sec2 + " равна " + hour + ":" + min + ":" + sec)
+        });
+
+        document.querySelector(".ex13").addEventListener("click", function () {
+            alert("Введите значение альфа");
+            var alpha = +prompt("Введите значение альфа");
+            var z1 = (Math.cos(alpha) + Math.sin(alpha)) / (Math.cos(alpha) - Math.sin(alpha));
+            var z2 = (Math.tan(alpha * 2) + Math.sin(alpha * 2));
+            alert("Результат расчета: z1 = " + z1.toFixed(2) + "/ z2 = " + z2.toFixed(2));
+        })
+    </script>
+
+</body>
+
+</html>

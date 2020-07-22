@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EX3</title>
+    <style>
+
+
+    </style>
+</head>
+
+<body>
+    <div style="text-align:center">
+        <h1>Задание 3</h1>
+        <div class="div" style="margin-bottom: 50px">
+            <button class="ex31" style="margin-top: 30px;">
+                <p>3.1 Колличество элементом между минимумом и максимумом</p>
+            </button>
+        </div>
+        <div style="margin-bottom: 50px">
+            <button class="ex32">
+                <p>3.2 Сумма элементов правее последнего отрицательного</p>
+            </button>
+        </div>
+        <div>
+            <button class="ex33" style="margin-bottom: 50px">
+                <p>3.3 Cортировка массива</p>
+            </button>
+        </div>
+        <div>
+            <div class="ex34" style="border: 1px solid black; width: 500px; margin: auto; padding: 20px;">
+                <p>Индивидуальное задание, вариант 14</p>
+                <img src="https://i.ibb.co/JyRW30S/3-4ex.jpg" alt="3-4ex" border="0" width="400"
+                    style="margin-bottom:20px">
+                <button class="ex341" style="margin-bottom: 20px">
+                    <p>1. Кол-во элементов массива, равных нулю</p>
+                </button>
+                <button class="ex342" style="margin-bottom: 20px">
+                    <p>2. Найти кол-во элементов, рассположенных после минимального элемента</p>
+                </button>
+                <button class="ex343">
+                    <p>3. Упорядочить элементы массива по возрастанию модулей элементов</p>
+                </button>
+                </d>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+    <script>
+        //3.1
+        document.querySelector(".ex31").addEventListener("click", function () {
+
+            // var a = [1, 3, -5, 1, -2, 1, -1, 3, 8, 4];
+
+            //Ввод элементов массива
+            var numberOfElements = +prompt("Введите кол-во элементов массива");
+            var a = [];
+            for (var i = 0; i < numberOfElements; i++) {
+                a[i] = +prompt("Введите значение элемента массива");
+            };
+            console.log(a);
+
+            //Объявление переменных
+            var iMax = 0;
+            var iMin = 0;
+            var iPos = 0;
+            var indexiMax = 0;
+            var indexiMin = 0;
+            var ibeg = 0;
+            var iend = 0;
+
+            //Находим iMax и iMin
+            for (var i = 0; i < a.length; i++) {
+                if (a[i] > iMax) {
+                    iMax = a[i];
+                    indexiMax = i;
+                }
+                if (a[i] < iMin) {
+                    iMin = a[i];
+                    indexiMin = i;
+                }
+            }
+
+            //Находим ibeg и iend
+            if (indexiMax > indexiMin) {
+                ibeg = indexiMin
+                iend = indexiMax
+            } else {
+                ibeg = indexiMax
+                iend = indexiMin
+            }
+
+            //Находим кол-во положительных значений между ibeg и iend
+            //Т.к наш диапазон значений находится между элементами ibeg и iend,
+            //необходимо начинать цикл с индекса i = ibeg + 1, а заканчивать
+            //при условии i < iMax
+            for (var i = ibeg + 1; i < iMax; i++) {
+                if (a[i] > 0) iPos++;
+            }
+
+            console.log("max = " + iMax + "/ min = " + iMin + "/ ibeg = " + ibeg + " / iend = " + iend);
+            console.log("Кол-во положительных - " + iPos);
+        });
+
+        //3.2
+        document.querySelector(".ex32").addEventListener("click", function () {
+
+            //Ввод элементов массива
+            var numberOfElements = +prompt("Введите кол-во элементов массива");
+            var arr = [];
+            for (var i = 0; i < numberOfElements; i++) {
+                arr[i] = +prompt("Введите значение элемента массива");
+            };
+            console.log(arr);
+            console.log(arr.length)
+
+            //Нахождение суммы элементов правее последнего отрицательного
+            var sumElem = 0;
+            for (var i = 0; i < arr.length; i++) {
+                sumElem += arr[i];
+                if (arr[i] < 0) {
+                    sumElem = 0
+                }
+            }
+
+            console.log(sumElem)
+        });
+
+        //3.3
+        document.querySelector(".ex33").addEventListener("click", function () {
+            //Ввод элементов массива
+            var numberOfElements = +prompt("Введите кол-во элементов массива");
+            var arr = [];
+            for (var i = 0; i < numberOfElements; i++) {
+                arr[i] = +prompt("Введите значение элемента массива");
+            };
+            console.log(arr);
+
+            //Сортировка массива
+            for (var i = 0; i <= arr.length - 2; i++) {
+                var minValue = arr[i];
+
+                for (var j = i + 1; j <= arr.length - 1; j++) {
+                    if (Math.abs(arr[j]) < Math.abs(minValue)) {
+                        minValue = arr[j];
+                        var swap = arr[i];
+                        arr[i] = minValue;
+                        arr[j] = swap;
+                    }
+                }
+            }
+            alert("Отсортированный массив: " + arr);
+        });
+
+
+        //3.4.1
+        document.querySelector(".ex341").addEventListener("click", function () {
+            //Ввод элементов массива
+            var numberOfElements = +prompt("Введите кол-во элементов массива");
+            var arr = [];
+            for (var i = 0; i < numberOfElements; i++) {
+                arr[i] = +prompt("Введите значение элемента массива");
+            };
+            console.log(arr);
+
+            //Нахождение элементов массива, равных нулю
+            var nullElem = 0;
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === 0) nullElem++;
+            }
+            alert("Кол-во элементом в массиве, равных нулю: " + nullElem);
+            console.log("Кол-во элементом в массиве, равных нулю: " + nullElem);
+        })
+
+        //3.4.2
+        document.querySelector(".ex342").addEventListener("click", function () {
+            //Ввод элементов массива
+            var numberOfElements = +prompt("Введите кол-во элементов массива");
+            var arr = [];
+            for (var i = 0; i < numberOfElements; i++) {
+                arr[i] = +prompt("Введите значение элемент а массива");
+            };
+            console.log(arr);
+
+            //Нахождение минимального элемента массива 
+            var minElem = arr[0];
+            var minElemIndex = 0;
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] < minElem) {
+                    minElem = arr[i];
+                    minElemIndex = i;
+                }
+            }
+            alert("Кол-во элементов, рассположенных после минимального элемента: " + ((arr.length - 1) -
+                minElemIndex));
+            console.log("Кол-во элементов, рассположенных после минимального элемента: " + ((arr.length - 1) -
+                minElemIndex));
+        })
+
+        //3.4.3     
+        document.querySelector(".ex343").addEventListener("click", function () {
+            //Ввод элементов массива
+            var numberOfElements = +prompt("Введите кол-во элементов массива");
+            var arr = [];
+            for (var i = 0; i < numberOfElements; i++) {
+                arr[i] = +prompt("Введите значение элемент а массива");
+            };
+            console.log("Массив: " + arr);
+
+            //Сортировка
+            for (var i = 0; i <= arr.length - 2; i++) {
+                var minValue = arr[i];
+
+                for (var j = i + 1; j <= arr.length - 1; j++) {
+                    if (Math.abs(arr[j]) < Math.abs(minValue)) {
+                        minValue = arr[j];
+                        var swap = arr[i];
+                        arr[i] = minValue;
+                        arr[j] = swap;
+                    }
+                }
+            }
+            alert("Массив после сортировки модулей элементов по возрастанию: " + arr);
+            console.log("Массив после сортировки модулей элементов по возрастанию: " + arr)
+        })
+    </script>
+
+</body>
+
+</html>
